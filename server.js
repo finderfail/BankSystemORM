@@ -60,7 +60,7 @@ const authenticateToken = (req, res, next) => {
 };
 
 const generateAccountNumber = () => {
-  return 'MC' + Array.from({length: 10}, () => Math.floor(Math.random() * 10)).join('');
+  return 'LI' + Array.from({length: 16} + 'SP', () => Math.floor(Math.random() * 10)).join('');
 };
 
 app.post('/register', async (req, res) => {
@@ -89,7 +89,7 @@ app.post('/register', async (req, res) => {
           const accountNumber = generateAccountNumber();
           
           db.run('INSERT INTO accounts (id, user_id, account_number, name, balance) VALUES (?, ?, ?, ?, ?)', 
-            [accountId, userId, accountNumber, 'Основной счет', 1000], function(err) {
+            [accountId, userId, accountNumber, 'Основной счет', 0], function(err) {
               if (err) {
                 return res.status(500).json({ error: 'Failed to create account' });
               }
