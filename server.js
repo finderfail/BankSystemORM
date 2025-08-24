@@ -60,7 +60,7 @@ const authenticateToken = (req, res, next) => {
 };
 
 const generateAccountNumber = () => {
-  return 'LI' + Array.from({length: 16} + 'SP', () => Math.floor(Math.random() * 10)).join('');
+  return 'LI' + Array.from({length: 16}, () => Math.floor(Math.random() * 10)).join('') + 'SP';
 };
 
 app.post('/register', async (req, res) => {
